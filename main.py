@@ -22,9 +22,7 @@ while niveau_vie > 0:
             y = str.strip(input("Votre choix: "))
             if y == "n":
                 choix()
-
-            win = False
-            while not win:
+            else:
                 score_de = random.randint(1, 6)
                 print("Vous scorez un ", score_de, "!")
 
@@ -33,18 +31,22 @@ while niveau_vie > 0:
                     print("Vous perdez", force_adv, "niveaux de vie")
                     niveau_vie = niveau_vie - force_adv
                     nombre_defaite += 1
-                    print("Vous avez maintenant ", niveau_vie, " niveaux de vie!")
+                    print("Vous avez perdu et avez ", niveau_vie, " niveaux de vie et ouvrez la porte devant vous")
                 elif score_de > force_adv:
                     print("Vous gagnez contre l'adversaire!!!")
                     print("Vous recevez", force_adv, "niveaux de vie")
                     niveau_vie = niveau_vie + force_adv
                     nombre_victoire += 1
+                    print("Vous avez gagné contre le monstre et ouvrez la porte devant vous avec ", niveau_vie,
+                          " niveaux de vie")
                     win = True
-            print("Vous avez gagné contre le monstre et ouvrez la porte devant vous avec ", niveau_vie,
-                      " niveaux de vie")
+
 
         elif x == "2":
             print("Vous contournez l'adversaire et ouvrez la porte devant vous")
+            niveau_vie -= 1
+            print("Vous perdez 1 niveau de vie, vous avez maintenant: ", niveau_vie)
+
 
 
         elif x == "3":
@@ -52,14 +54,15 @@ while niveau_vie > 0:
                 "Vous allez vous battre contre un monstre d'une force entre 1 et 5. \nPour l'attaquer vous allez lancer un dé"
                  " de 1 - 6. \nSi vous scorez en dessous de son nombre de force, vous allez perdre le meme nombre de niveaux de vie"
                 " qu'il a de force. \nSi vous gagnez, vous allez recevoir le nombre de force de l'enemi en tant que niveaux de vie"
-                "\nLorsque vous recontrez un adversaire vous pouver choisir entre 4 options: \n1 pour le combattre, 2 pour l'éviter,"
+                "\nLorsque vous recontrez un adversaire vous pouver choisir entre 4 options: \n1 pour le combattre, 2 pour l'éviter mais en perdant un point de vie,"
                 " 3 pour revoir ces règles et 4 pour quitter le jeux" )
             choix()
 
 
         elif x == "4":
-            print("Ok")
+            print("Merci et au revoir")
             niveau_vie = 0
+
 
 
         else:
@@ -73,3 +76,4 @@ while niveau_vie > 0:
 
 
 print("Vous êtes mort... Vous avez eu ", nombre_victoire, " victoires et ", nombre_defaite, " défaites")
+exit()
