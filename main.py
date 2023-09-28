@@ -7,6 +7,11 @@ nombre_victoire = 0
 print("Vous vous retrouvez devant une porte, avec curiosité vous decidez de l'ouvrir")
 #Continue jusqua que l'utilisateur n'a plus de vie.
 while niveau_vie > 0:
+    ############FAIRE MARCHER LE TRUC DE BOSSCHECK####################
+    if nombre_victoire % 3 == 0 and nombre_victoire != 0:
+
+        print("A la place d'un adversaire normal vous vous retrouvez devant un BOSS.")
+        exit()
     force_adv = random.randint(1, 5)
     print("Vous tombez face à face avec un adversaire de difficulté : ", force_adv)
     print("Que voulez-vous faire? \n1- Combattre cet adversaire\n2- Contourner cet adversaire et aller ouvrir une autre porte"
@@ -39,7 +44,6 @@ while niveau_vie > 0:
                     nombre_victoire += 1
                     print("Vous avez gagné contre le monstre et ouvrez la porte devant vous avec ", niveau_vie,
                           " niveaux de vie")
-                    win = True
 
 
         elif x == "2":
