@@ -11,14 +11,20 @@ boss = False
 # defini le jeux; le choix de l'utilisateur et les combats
 def choix():
     # change la value des variable a global dans la fonction
-    global niveau_vie
-    global nombre_defaite
-    global nombre_victoire
-    global force_adv
+    global niveau_vie, nombre_defaite, nombre_victoire, force_adv
+    # Le boss, true jusqua que le boss fight fini
+    #################### A FNIINR##################
     if boss:
-        force_adv = random.randint(6, 15)
-        while True:
+        force_adv = random.randint(6, 12)
+        while not i:
             print("Chaque nombre que vous alez rouler va diminuer la vie du boss")
+            score_de = random.randint(1,6) + random.randint(1,6) + random.randint(1,6)
+            print("Vouz scorez ", score_de,"!")
+            force_adv -= score_de
+            if force_adv
+                i = True
+
+
 
     x = str.strip(input("Votre choix: "))
     if x == "1":
@@ -85,13 +91,15 @@ def choix():
 
 
 print("Vous vous retrouvez devant une porte, avec curiosité vous decidez de l'ouvrir")
+
+
 # Continue jusqua que l'utilisateur n'a plus de vie.
 while niveau_vie > 0:
     ############FAIRE MARCHER LE TRUC DE BOSSCHECK####################
     if nombre_victoire % 3 == 0 and nombre_victoire != 0:
         boss = True
         print("A la place d'un adversaire normal vous vous retrouvez devant un BOSS.\n Celui-ci a une force de "
-              "6 à 15. \nIl attaque chaque deux tours et fait la moitié de sa force arrondie en tant que dommage")
+              "6 à 15. \nLe nombre de dommage qu'il va faire va etre egal au nombre de vie qu'il lui reste")
         choix()
     else:
         force_adv = random.randint(1, 5)
