@@ -5,17 +5,19 @@ niveau_vie = 20
 nombre_defaite = 0
 nombre_victoire = 0
 force_adv = 0
+wstreak = 0
+hwstreak = 0
 boss = False
 
 
 # defini le jeux; le choix de l'utilisateur et les combats
 def choix():
     # change la value des variable a global dans la fonction
-    global niveau_vie, force_adv, nombre_victoire, nombre_defaite, boss
+    global niveau_vie, force_adv, nombre_victoire, nombre_defaite, boss, wstreak, hwstreak
     if niveau_vie < 0:
         return
     elif boss:
-        force_adv = random.randint(13, 18)
+        force_adv = random.randint(12, 17)
         print("Le boss a ", force_adv, " de force. Chaque nombre que vous alez rouler va diminuer la force du boss")
         i = True
         while i:
@@ -31,10 +33,12 @@ def choix():
                 print("Il vous reste ", niveau_vie, "niveaux de vie et il reste au boss ", force_adv, " de force")
 
             elif force_adv <= 0:
-                print("Vous battez le boss et augmentez votre niveau de vie de 10 et vos victoire augmentent de 1!")
+                print("Vous battez le boss et augmentez votre niveau de vie de 10 (", niveau_vie,
+                      ") et vos victoire augmentent de 1!")
                 nombre_victoire += 1
                 niveau_vie += 10
                 i = False
+        wstreak += 1
         boss = False
     else:
         x = str.strip(input("Votre choix: "))
@@ -45,14 +49,17 @@ def choix():
                 choix()
             else:
                 score_de = random.randint(1, 6)
-                #score_de = 7 #test purposes
+                #score_de = 7 ##test purposes
                 print("Vous scorez un ", score_de, "!")
 
                 if score_de <= force_adv:
                     print("Vous perdez contre l'adversaire!")
-                    print("Vous perdez", force_adv, "niveaux de vie")
+                    print("Vous perdez", force_adv, "niveaux de vie et votre winstreak reviens a 0")
                     niveau_vie = niveau_vie - force_adv
                     nombre_defaite += 1
+                    if hwstreak < wstreak:
+                        hwstreak = wstreak
+                    wstreak = 0
                     if niveau_vie < 0:
                         # Pour que le niveau de vie ne soit pas en dessous de 0
                         niveau_vie -= niveau_vie
@@ -65,8 +72,9 @@ def choix():
                     print("Vous recevez", force_adv, "niveaux de vie")
                     niveau_vie = niveau_vie + force_adv
                     nombre_victoire += 1
+                    wstreak += 1
                     print("Vous avez gagné contre le monstre et ouvrez la porte devant vous avec ", niveau_vie,
-                          " niveaux de vie et ", nombre_victoire, " victoire(s)")
+                          " niveaux de vie et ", nombre_victoire, " victoire(s). (", wstreak, " winstreak )")
 
         elif x == "2":
             print("Vous contournez l'adversaire et ouvrez la porte devant vous")
@@ -105,7 +113,7 @@ while niveau_vie > 0:
         boss = True
         print("A la place d'un adversaire normal vous vous retrouvez devant un BOSS.\nCelui-ci a une force de "
               "13 à 18. \nIl attaque a la fin de votre tour avec le nombre de force qu'il lui reste. "
-              "Lorsque vous gagnez vous recevez 10 vie")
+              "Lorsque vous gagnez vous recevez 10 vie. Il assure +1 winstreak")
         choix()
     else:
         force_adv = random.randint(1, 5)
@@ -117,5 +125,6 @@ while niveau_vie > 0:
 
         choix()
 
-print("Vous êtes mort... Vous avez eu ", nombre_victoire, " victoires et ", nombre_defaite, " défaites")
+print("Vous êtes mort... Vous avez eu ", nombre_victoire, " victoires et ", nombre_defaite, " défaites."
+      " Votre plus grand winstreak était de", hwstreak)
 exit()
