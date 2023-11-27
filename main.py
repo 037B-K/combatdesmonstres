@@ -109,7 +109,7 @@ def choix():
 print("Vous vous retrouvez devant une porte, avec curiosité vous decidez de l'ouvrir")
 # Continue jusqua que l'utilisateur n'a plus de vie.
 while niveau_vie > 0:
-    if nombre_victoire % 3 == 0 and nombre_victoire != 0:
+    if wstreak % 3 == 0 and wstreak != 0:
         boss = True
         print("A la place d'un adversaire normal vous vous retrouvez devant un BOSS.\nCelui-ci a une force de "
               "13 à 18. \nIl attaque a la fin de votre tour avec le nombre de force qu'il lui reste. "
